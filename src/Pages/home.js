@@ -1,24 +1,28 @@
+import { useNavigation } from '@react-navigation/core';
 import React from 'react';
-import { Button, StyleSheet, Text, View } from 'react-native';
+import { TouchableOpacity, StyleSheet, Text, View } from 'react-native';
 import LinearGradient from 'react-native-linear-gradient';
 
+export default function Home() {
 
-export default function App() {
+  const Navigation = useNavigation();
+
   return (
-
     <View style={styles.container}>
-      <LinearGradient colors={['#26fff1', '#16ffc9', '#26fff1']} style={styles.linearGradient}>
+      <LinearGradient colors={['black', 'red']} start={{x: 0.9, y: 0.4}} end={{x: 1, y: 1}} style={styles.linearGradient}>
         <View style={{ flex: 1 }}>
           <View style={styles.header}>
             <Text style={styles.h1}>COVID-19</Text>
           </View>
           <View style={styles.body}>
-            <Text style={styles.p1}>Este APP foi desenvolvido para informá-lo sobre a situação epidemiológica da COVID-19 no mundo.</Text>
-            <Button title='Dados atuais' style={styles.btn}/>
+            <Text style={styles.p1}>Este APP foi desenvolvido para informá-lo sobre a situação epidemiológica da COVID-19 no Brasil.</Text>
+            <TouchableOpacity onPress={() => { Navigation.navigate("Main") }} style={styles.btn}>
+              <Text style={styles.p1}>Tempo real</Text>
+            </TouchableOpacity>
           </View>
           <View style={styles.footer}>
-            <Text style={styles.p2}>Stay home</Text>
-            <Text style={styles.p2}>Stay safe</Text>
+            <Text style={styles.p2}>#StayHome</Text>
+            <Text style={styles.p2}>#StaySafe</Text>
           </View>
         </View>
       </LinearGradient>
@@ -56,18 +60,26 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
   },
   h1: {
+    color: 'red',
     fontWeight: 'bold',
-    fontSize: 50,
-    color: '#D2691E',
+    fontSize: 50
   },
   p1: {
-    color: 'red', 
-    fontSize: 28, 
+    color: 'red',
+    fontSize: 28,
     textAlign: 'center'
   },
   p2: {
-    color: 'red', 
-    fontSize: 22, 
+    color: 'black',
+    fontSize: 22,
     textAlign: 'center'
+  },
+  btn: {
+    width: 180,
+    height: 100,
+    borderRadius: 25,
+    backgroundColor: 'black',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 });
