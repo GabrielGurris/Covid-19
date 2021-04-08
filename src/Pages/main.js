@@ -15,20 +15,34 @@ export default function Data() {
         Api.get("/cases?country=Brazil").then(response => setInfo(response.data));
     }, [])
 
-    console.log(Object.entries(info).map(n => n[0]));
-
     return (
-        <View style={styles.container}>
-        <AppBar />  
-            <LinearGradient colors={['black', 'red']} start={{x: 0.9, y: 0.4}} end={{x: 1, y: 1}} style={styles.linearGradient}>
-                <ScrollView style={styles.center}>
-                    {
-                        Object.entries(info).map(n => <Cities name={n[0]} key={n[0]} ></Cities>)
-                    }
-                </ScrollView>
-                <Button title="Voltar" onPress={() => { Navigation.goBack() }}></Button>
-            </LinearGradient>
-        </View>
+        <>
+            <AppBar />
+            <View style={styles.container}>
+                <LinearGradient colors={['black', 'red']} start={{ x: 0.9, y: 0.4 }} end={{ x: 1, y: 1 }} style={styles.linearGradient}>
+                    <ScrollView style={styles.center}>
+                        {
+                            Object.entries(info).map(n => {
+
+                                const name = n[0] !== "All" ? n[0] : "Brasil";
+
+                                return (
+                                    <Cities name={name} key={n[0]} onPress={() => {
+                                        Navigation.navigate("Data",
+                                            {
+                                                title: name,
+                                                confirmed: n[1].confirmed,
+                                                recovered: n[1].recovered,
+                                                deaths: n[1].deaths,
+                                                updated: n[1].updated
+                                            })
+                                    }} ></Cities>)
+                            })
+                        }
+                    </ScrollView>
+                </LinearGradient>
+            </View>
+        </>
     );
 }
 

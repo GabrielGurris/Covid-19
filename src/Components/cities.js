@@ -1,27 +1,18 @@
-import { StyleSheet, Image, Text, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, TouchableOpacity } from 'react-native';
 import React from 'react';
 
 const Cities = (props) => {
     return (
-        <TouchableOpacity style={styles.container}>
-            <Image
-                style={styles.country}
-                source={{
-                    uri: 'https://reactnative.dev/img/tiny_logo.png',
-                }}
-            />
+        <TouchableOpacity style={styles.container} onPress={props.onPress}>
             <Text style={styles.text}>{props.name}</Text>
         </TouchableOpacity>
     );
 }
 
 const styles = StyleSheet.create({
-    country: {
-      width: 50,
-      height: 50
-    },
     container: {
         alignItems: 'center',
+        justifyContent: 'center',
         flexDirection: 'row',
         backgroundColor: 'black',
         borderWidth: 4,
