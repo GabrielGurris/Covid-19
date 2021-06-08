@@ -6,6 +6,11 @@ on:
 jobs:
   build-android:
     runs-on: ubuntu-latest
+     
+    
+    env:
+      FIREBASE_ID_APP: ${{ secrets.FIREBASE_ID_APP }}
+      FIREBASE_TOKEN_CI: ${{ secrets.FIREBASE_TOKEN_CI }}
 
     steps:
       - uses: actions/checkout@v2
