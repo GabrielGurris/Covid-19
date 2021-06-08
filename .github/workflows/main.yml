@@ -2,7 +2,7 @@ name: deployCovidFirebase
 on:
   push:
     branches:
-      - master
+      - main
 jobs:
   build-android:
     runs-on: ubuntu-latest
