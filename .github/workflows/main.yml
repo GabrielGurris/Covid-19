@@ -1,0 +1,27 @@
+name: deployCovidFirebase
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build-android:
+    runs-on: ubuntu-latest
+
+    actions:
+      - uses: actions/checkout@v2
+      - name: Install npm dependencies
+        run: |
+          npm install
+      - name: Torna a pasta gradle executavel
+        run: |
+          cd android && chmod +x ./gradlew
+      - name: Builda APK
+        run: |
+          cd android && ./gradlew assembleRelease
+      - name: Firebase App Distribution
+        uses: wzieba/Firebase-Distribution-Github-Action@v1.3.2
+        with:
+         appId: ${{ secrets.FIREBASE_ID_APP }}
+         token: ${{ secrets.FIREBASE_TOKEN_CI }}
+         groups: testebeta
+         file: android/app/build/outputs/apk/release/app-release.apk
