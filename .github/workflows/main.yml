@@ -7,7 +7,7 @@ jobs:
   build-android:
     runs-on: ubuntu-latest
 
-    actions:
+    steps:
       - uses: actions/checkout@v2
       - name: Install npm dependencies
         run: |
