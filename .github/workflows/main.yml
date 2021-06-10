@@ -16,7 +16,7 @@ jobs:
       - name: Torna a pasta gradle executavel
         run: |
           cd android && chmod +x ./gradlew
-      - name: Builda o APK
+      - name: Builda APK
         run: |
           cd android && ./gradlew assembleRelease
       - name: Firebase App Distribution
