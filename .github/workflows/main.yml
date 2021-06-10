@@ -3,6 +3,7 @@ on:
   push:
     branches:
       - main
+
 jobs:
   build-android:
     runs-on: ubuntu-latest
@@ -15,7 +16,7 @@ jobs:
       - name: Torna a pasta gradle executavel
         run: |
           cd android && chmod +x ./gradlew
-      - name: Builda APK
+      - name: Builda o APK
         run: |
           cd android && ./gradlew assembleRelease
       - name: Firebase App Distribution
